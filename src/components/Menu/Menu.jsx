@@ -1,11 +1,22 @@
 // Menu.js
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { MdOutlineKeyboardArrowDown, MdPeopleAlt } from 'react-icons/md';
 import { SlBasket } from 'react-icons/sl';
 import cls from './Menu.module.css';
+import { Modal } from 'antd';
+import { LoginForm } from '../LoginForm/LoginForm';
 
 export const Menu = () => {
+  const [isAuth, setIsAuth] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  function closeModal() {
+    setModal(false);
+  }
+  function openModal() {
+    setModal(true);
+  }
   return (
     <div className={cls.menuWrap}>
       <div className={cls.headerContainer}>
@@ -19,7 +30,7 @@ export const Menu = () => {
           <li className={cls.menuItem}>Доставка и оплата</li>
           <li className={cls.menuItem}>Новости</li>
           <li className={cls.menuItem}>Контакты</li>
-          <li className={cls.menuItem}>
+          <li className={cls.menuItem} onClick={openModal}>
             <MdPeopleAlt className={cls.menuIcon} /> Кабинет
           </li>
           <li className={cls.menuItem}>
@@ -28,6 +39,9 @@ export const Menu = () => {
           </li>
         </ul>
       </div>
+      <Modal open={modal} onCancel={closeModal} footer={null}>
+        <LoginForm isAuth={isAuth} setIsAuth={setIsAuth} />
+      </Modal>
     </div>
   );
 };
