@@ -5,7 +5,7 @@ import cls from './LoginForm.module.css';
 
 export const LoginForm = ({ isAuth, setIsAuth }) => {
   const correctAuthData = {
-    login: 'Maryna',
+    login: 'maryna@gmail.com',
     name: 'Maryna Shavlak',
     password: 'marynatest28',
   };
